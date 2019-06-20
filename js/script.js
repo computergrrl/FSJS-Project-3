@@ -36,7 +36,7 @@ $jobTitle.on('change' , function(){
 /***********************T-Shirt Info Section ****************************/
 
 const $shirtTheme = $('#design');
-const $shirtColors = $('#colors-js-puns');
+const $shirtColors = $('#colors-js-puns option');
 
 
 //event listener to detect change in the dropdown menu
@@ -44,7 +44,30 @@ $shirtTheme.on('change' , function(){
 
 
           //set a variable to the value of option selected in from dropdown
-          const $theme = $('#shirtTheme option:selected').val();
+          const $theme = $('#design option:selected').val();
 
-              console.log($theme);
+              if($theme === 'js puns') {
+                  //show the first 3 and hide the last 3
+
+                  $shirtColors.eq(3).hide();
+                  $shirtColors.eq(4).hide();
+                  $shirtColors.eq(5).hide();
+
+
+
+              } else if($theme === 'heart js') {
+
+
+                    //show the last 3 and hide the first 3
+                    $shirtColors.eq(0).hide();
+                    $shirtColors.eq(1).hide();
+                    $shirtColors.eq(2).hide();
+
+
+              }  else {
+
+                     $shirtColors.show();
+              }
+
+
           });
