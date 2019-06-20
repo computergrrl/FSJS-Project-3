@@ -47,8 +47,10 @@ $shirtTheme.on('change' , function(){
           const $theme = $('#design option:selected').val();
 
               if($theme === 'js puns') {
-                  //change shown selected option (this does not work)
-                  $shirtColors.eq(1).attr('selected' , 'selected');
+
+                  $shirtColors.attr('selected' , 'dimgrey');
+
+
                   //show the first 3 and hide the last 3
 
                   $shirtColors.eq(3).hide();
@@ -57,9 +59,11 @@ $shirtTheme.on('change' , function(){
 
 
 
-              } else if($theme === 'heart js') {
-                    //change shown selected option (nope doesn't work)
-                    $shirtColors.eq(3).attr('selected' , 'selected');
+              }  if($theme === 'heart js') {
+                
+
+                    $shirtColors.attr('selected' , 'tomato');
+
                     //show the last 3 and hide the first 3
                     $shirtColors.eq(0).hide();
                     $shirtColors.eq(1).hide();
