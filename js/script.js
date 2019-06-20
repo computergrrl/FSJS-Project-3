@@ -48,11 +48,13 @@ $shirtTheme.on('change' , function(){
 
               if($theme === 'js puns') {
 
-                  $shirtColors.attr('selected' , 'dimgrey');
+                  $shirtColors.eq(1).prop('selected' , 'true');
 
 
                   //show the first 3 and hide the last 3
-
+                  $shirtColors.eq(0).show();
+                  $shirtColors.eq(1).show();
+                  $shirtColors.eq(2).show();
                   $shirtColors.eq(3).hide();
                   $shirtColors.eq(4).hide();
                   $shirtColors.eq(5).hide();
@@ -60,14 +62,17 @@ $shirtTheme.on('change' , function(){
 
 
               }  if($theme === 'heart js') {
-                
 
-                    $shirtColors.attr('selected' , 'tomato');
+
+                    $shirtColors.eq(3).prop('selected' , 'true');
 
                     //show the last 3 and hide the first 3
                     $shirtColors.eq(0).hide();
                     $shirtColors.eq(1).hide();
                     $shirtColors.eq(2).hide();
+                    $shirtColors.eq(3).show();
+                    $shirtColors.eq(4).show();
+                    $shirtColors.eq(5).show();
 
 
               }  else {
