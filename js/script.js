@@ -1,5 +1,10 @@
 
 const $inputName = $('#name');
+const $jobRole = $('#other-title');
+
+//hide other job Role input field
+$jobRole.hide();
+
 
 //auto focus on name field upon page load
 $inputName.focus();
@@ -9,19 +14,12 @@ const $jobTitle = $('#title');
 //event listener to add text box if "other" is selected in dropdown menu
 $jobTitle.on('change' , function(){
 
-    const $selected = $('#title option:selected').val();
+          const $selected = $('#title option:selected').val();
 
-    console.log($selected);
+          if ($selected === 'other') {
 
-    if ($selected === 'other') {
+          $jobRole.show();
 
-       //console.log('You selected "Other!"')
-
-    $jobTitle.append('<input type="text">');
-
-
-    }
-
-
+      }
 
 });
