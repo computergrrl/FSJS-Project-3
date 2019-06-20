@@ -20,6 +20,8 @@ $jobTitle.on('change' , function(){
 
           $jobRole.show();
 
+      }  else {
+          $jobRole.hide();
       }
 
 });
