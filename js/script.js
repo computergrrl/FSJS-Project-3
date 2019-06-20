@@ -48,20 +48,20 @@ $shirtTheme.on('change' , function(){
 
               if($theme === 'js puns') {
 
-                  $shirtColors.eq(1).prop('selected' , 'true');
+                  $shirtColors.eq(0).prop('selected' , 'true');
 
 
                   //show the first 3 and hide the last 3
-                  $shirtColors.eq(0).show();
-                  $shirtColors.eq(1).show();
-                  $shirtColors.eq(2).show();
                   $shirtColors.eq(3).hide();
                   $shirtColors.eq(4).hide();
                   $shirtColors.eq(5).hide();
+                  $shirtColors.eq(0).show();
+                  $shirtColors.eq(1).show();
+                  $shirtColors.eq(2).show();
 
 
 
-              }  if($theme === 'heart js') {
+              } else if($theme === 'heart js') {
 
 
                     $shirtColors.eq(3).prop('selected' , 'true');
