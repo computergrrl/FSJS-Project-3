@@ -89,24 +89,26 @@ const $labels = $('.activities label');
 //function for when there's a change in the activities section
 $activities.on('change', function(e){
 
-//function to toggle Activities on and off
-function activitiesToggler(inputName, itemNumber) {
-//checks if checked box has name equal to inputName argument
-  if(e.target.getAttribute('name') === inputName) {
+/************************************
+FUNCTION TO ENABLE/DISABLE ACTIVITIES
+***********************************/
+    function activitiesToggler(inputName, itemNumber) {
+    //checks if checked box has name equal to inputName argument
+      if(e.target.getAttribute('name') === inputName) {
 
-    /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
-   $labels.eq(itemNumber).toggleClass("disabled");
+        /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
+       $labels.eq(itemNumber).toggleClass("disabled");
 
-      /* Then check and if the checkbox is disabled then enable it and visa versa */
-      if($activities.eq(itemNumber).prop("disabled")) {
-         $activities.eq(itemNumber).prop("disabled" , false);
+          /* Then check and if the checkbox is disabled then enable it and visa versa */
+          if($activities.eq(itemNumber).prop("disabled")) {
+             $activities.eq(itemNumber).prop("disabled" , false);
 
-     } else if($activities.eq(itemNumber).prop("disabled" , false)) {
-           $activities.eq(itemNumber).prop("disabled" , true);
+         } else if($activities.eq(itemNumber).prop("disabled" , false)) {
+               $activities.eq(itemNumber).prop("disabled" , true);
+           }
+
        }
-
-   }
-}
+    }
 
 activitiesToggler("js-frameworks" , 3);
 activitiesToggler("express" , 1);
