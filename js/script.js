@@ -73,7 +73,7 @@ $shirtTheme.on('change' , function(){
                     $shirtColors.eq(4).show();
                     $shirtColors.eq(5).show();
 
-
+                //otherwise show all shirt color options
               }  else {
 
                      $shirtColors.show();
@@ -86,23 +86,33 @@ $shirtTheme.on('change' , function(){
 const $activities = $('.activities input');
 const $labels = $('.activities label');
 
-
-//labels 7-13
+//function for when there's a change in the activities section
 $activities.on('change', function(e){
 
-   if(e.target.getAttribute('name') === "js-frameworks") {
-    $labels.eq(3).toggleClass("disabled");
-    //$activities.eq(3).prop("disabled" , true);
+//function to toggle Activities on and off
+function activitiesToggler(inputName, itemNumber) {
+//checks if checked box has name equal to inputName argument
+  if(e.target.getAttribute('name') === inputName) {
 
-       if($activities.eq(3).prop("disabled")) {
-          $activities.eq(3).prop("disabled" , false);
+    /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
+   $labels.eq(itemNumber).toggleClass("disabled");
 
-      } else if($activities.eq(3).prop("disabled" , false)) {
-            $activities.eq(3).prop("disabled" , true);
-        }
+      /* Then check and if the checkbox is disabled then enable it and visa versa */
+      if($activities.eq(itemNumber).prop("disabled")) {
+         $activities.eq(itemNumber).prop("disabled" , false);
 
+     } else if($activities.eq(itemNumber).prop("disabled" , false)) {
+           $activities.eq(itemNumber).prop("disabled" , true);
+       }
 
-    }
+   }
+}
+
+activitiesToggler("js-frameworks" , 3);
+activitiesToggler("express" , 1);
+activitiesToggler("js-libs" , 4);
+activitiesToggler("node" , 2);
+
 
 });
 
