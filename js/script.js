@@ -117,16 +117,13 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
     activitiesToggler("node" , 2);
 
 
-      //create variable named total to store total price 
+      //create variable named total to store total price
       let total = 0;
 
       //if the first item is checked then add 200 to total
       const $main = $('#main');
       if ($main.prop("checked")) {
           total += 200;
-      }
-      else {  //otherwise add nothing to total
-        total +=0;
       }
       /*
       loop through all the check boxes to determine total. If checkbox
