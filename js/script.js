@@ -38,7 +38,6 @@ $jobTitle.on('change' , function(){
 const $shirtTheme = $('#design');
 const $shirtColors = $('#colors-js-puns option');
 
-
 //event listener to detect change in the dropdown menu
 $shirtTheme.on('change' , function(){
 
@@ -84,3 +83,21 @@ $shirtTheme.on('change' , function(){
           });
 
 /**********************Activities Section *******************************/
+const $activities = $('.activities input');
+const $labels = $('.activities label');
+
+
+//labels 7-13
+$activities.on('change', function(e){
+   console.log(e.target);
+   if(e.target == '<input type="checkbox" name="js-frameworks">') {
+    $labels.eq(3).toggleClass("disabled");
+
+   }
+
+});
+
+
+
+
+////////////////////////////
