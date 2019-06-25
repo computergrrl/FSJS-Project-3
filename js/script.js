@@ -89,11 +89,20 @@ const $labels = $('.activities label');
 
 //labels 7-13
 $activities.on('change', function(e){
-   console.log(e.target);
-   if(e.target == '<input type="checkbox" name="js-frameworks">') {
-    $labels.eq(3).toggleClass("disabled");
 
-   }
+   if(e.target.getAttribute('name') === "js-frameworks") {
+    $labels.eq(3).toggleClass("disabled");
+    //$activities.eq(3).prop("disabled" , true);
+
+       if($activities.eq(3).prop("disabled")) {
+          $activities.eq(3).prop("disabled" , false);
+
+      } else if($activities.eq(3).prop("disabled" , false)) {
+            $activities.eq(3).prop("disabled" , true);
+        }
+
+
+    }
 
 });
 
