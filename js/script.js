@@ -86,6 +86,7 @@ $shirtTheme.on('change' , function(){
 const $activities = $('.activities input');
 const $labels = $('.activities label');
 
+
 //function for when there's a change in the activities section
 $activities.on('change', function(e){
 
@@ -110,13 +111,36 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
        }
     }
 
-activitiesToggler("js-frameworks" , 3);
-activitiesToggler("express" , 1);
-activitiesToggler("js-libs" , 4);
-activitiesToggler("node" , 2);
+    activitiesToggler("js-frameworks" , 3);
+    activitiesToggler("express" , 1);
+    activitiesToggler("js-libs" , 4);
+    activitiesToggler("node" , 2);
 
 
+      //create variable named total to store total price 
+      let total = 0;
+
+      //if the first item is checked then add 200 to total
+      const $main = $('#main');
+      if ($main.prop("checked")) {
+          total += 200;
+      }
+      else {  //otherwise add nothing to total
+        total +=0;
+      }
+      /*
+      loop through all the check boxes to determine total. If checkbox
+      is checked then add 100 to the total (set i = 1 to start since we want to skip the first item in the list and the list is zero-indexed)
+      */
+      for (let i =1; i <= $activities.length; i++) {
+           if ($activities.eq(i).prop("checked")) {
+             total += 100;
+           }
+      }
+
+      console.log(total);
 });
+
 
 
 
