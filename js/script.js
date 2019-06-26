@@ -136,6 +136,14 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
       }
 
       console.log(total);
+      
+      //create a new variable to append total to
+      const $act = $('.activities');
+
+      //append total
+      $act.append("Total so far: " + total);
+
+
 });
 
 
