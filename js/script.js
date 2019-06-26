@@ -38,6 +38,7 @@ $jobTitle.on('change' , function(){
 const $shirtTheme = $('#design');
 const $shirtColors = $('#colors-js-puns option');
 
+
 //event listener to detect change in the dropdown menu
 $shirtTheme.on('change' , function(){
 
@@ -85,6 +86,10 @@ $shirtTheme.on('change' , function(){
 /**********************Activities Section *******************************/
 const $activities = $('.activities input');
 const $labels = $('.activities label');
+const $act = $('.activities');
+const showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
+
+$act.append(showTotal);
 
 
 //function for when there's a change in the activities section
@@ -136,12 +141,17 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
       }
 
       console.log(total);
-      
+      $('#totalCost').text(total);
+
       //create a new variable to append total to
-      const $act = $('.activities');
+
+
+
 
       //append total
-      $act.append("Total so far: " + total);
+      //$act.text(total);
+
+
 
 
 });
