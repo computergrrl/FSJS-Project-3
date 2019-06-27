@@ -84,11 +84,13 @@ $shirtTheme.on('change' , function(){
           });
 
 /**********************Activities Section *******************************/
+
 const $activities = $('.activities input');
 const $labels = $('.activities label');
 const $act = $('.activities');
-const showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
 
+//create and append a p and span to display total cost in
+const showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
 $act.append(showTotal);
 
 
@@ -105,7 +107,7 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
         /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
        $labels.eq(itemNumber).toggleClass("disabled");
 
-          /* Then check and if the checkbox is disabled then enable it and visa versa */
+          /* Then check if the checkbox is disabled. If it is enable it and if it's already enabled then disable it*/
           if($activities.eq(itemNumber).prop("disabled")) {
              $activities.eq(itemNumber).prop("disabled" , false);
 
@@ -115,7 +117,7 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 
        }
     }
-
+    /* run the activitiesToggler function on all 4 boxes which might conflict and enable or disable them accordingly */
     activitiesToggler("js-frameworks" , 3);
     activitiesToggler("express" , 1);
     activitiesToggler("js-libs" , 4);
@@ -131,33 +133,17 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
           total += 200;
       }
       /*
-      loop through all the check boxes to determine total. If checkbox
-      is checked then add 100 to the total (set i = 1 to start since we want to skip the first item in the list and the list is zero-indexed)
+      loop through all the remaining check boxes to determine total. If checkbox is checked then add 100 to the total (start loop at i = 1 since we want to skip the first item in the list and the list is zero-indexed)
       */
       for (let i =1; i <= $activities.length; i++) {
            if ($activities.eq(i).prop("checked")) {
              total += 100;
            }
       }
-
-      console.log(total);
+      //update the total
       $('#totalCost').text(total);
-
-      //create a new variable to append total to
-
-
-
-
-      //append total
-      //$act.text(total);
-
-
 
 
 });
 
-
-
-
-
-////////////////////////////
+/********************* Payment Information Section *********************/
