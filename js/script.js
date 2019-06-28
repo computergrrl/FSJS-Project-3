@@ -90,8 +90,8 @@ const $labels = $('.activities label');
 const $act = $('.activities');
 
 //create and append a p and span to display total cost in
-const showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
-$act.append(showTotal);
+const $showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
+$act.append($showTotal);
 
 
 //function for when there's a change in the activities section
@@ -147,3 +147,25 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 });
 
 /********************* Payment Information Section *********************/
+
+// const $divCC = $('#cc-num');
+// const $ccValidator = $('');
+// $divCC.append($ccValidator);
+
+const $paymentDiv = $('#credit-card label');
+const $tester = $('<span class="tooltip"> Do this thing</span>');
+const $tester2 = $('<span class="tooltip"> Do this other thing</span>');
+const $tester3 = $('<span class="tooltip"> Do one more thing</span>');
+
+$paymentDiv.eq(0).append($tester);
+$tester.hide();
+$paymentDiv.eq(1).append($tester2);
+$tester2.hide();
+$paymentDiv.eq(2).append($tester3);
+$tester3.hide();
+
+
+
+
+
+///////////////////
