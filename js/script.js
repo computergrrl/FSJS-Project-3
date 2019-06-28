@@ -153,9 +153,11 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 // $divCC.append($ccValidator);
 
 const $paymentDiv = $('#credit-card label');
-const $tester = $('<span class="tooltip"> Do this thing</span>');
+const $tester = $('<span class="tooltip"> Must be 13-16 numbers only</span>');
 const $tester2 = $('<span class="tooltip"> Do this other thing</span>');
 const $tester3 = $('<span class="tooltip"> Do one more thing</span>');
+const $ccInput = $('#cc-num');
+
 
 $paymentDiv.eq(0).append($tester);
 $tester.hide();
@@ -163,6 +165,42 @@ $paymentDiv.eq(1).append($tester2);
 $tester2.hide();
 $paymentDiv.eq(2).append($tester3);
 $tester3.hide();
+
+function ccValidate(cc) {
+    return /^\d{13,16}$/.test(cc);
+}
+
+
+
+$ccInput.on('keyup', function(){
+    const cc = $ccInput.val();
+      if(!ccValidate(cc))  {
+
+
+      $tester.show();
+    }  else {
+        $tester.hide();
+        $ccInput.css("border" , "none");
+    }
+
+    console.log(cc);
+
+});
+ //check validation again if they switch to different input field
+  $ccInput.on('blur' , function(){
+
+      const cc = $ccInput.val();
+
+          if(ccValidate(cc) || cc == "")  {
+              $tester.hide();
+              $ccInput.css("border" , "none");
+        }  if (!ccValidate(cc)) {
+            $ccInput.css("borderColor" , "#B22222");
+
+          }
+
+
+});
 
 
 

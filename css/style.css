@@ -189,8 +189,6 @@ button:hover {
 
 .tooltip {
   color: #B22222;
-  border-radius: 2px;
-  border-color: firebrick;
   font-size: .8em;
   z-index: 1;
 }
