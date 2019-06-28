@@ -151,19 +151,19 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 // const $divCC = $('#cc-num');
 // const $ccValidator = $('');
 // $divCC.append($ccValidator);
-
-const $paymentDiv = $('#credit-card label');
-const $ccWarning = $('<span class="tooltip"> Must be 13-16 digits <b>numbers only</b></span>');
+const $cardDiv = $('#credit-card')
+const $cardInfo = $('#credit-card label');
+const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
 const $tester2 = $('<span class="tooltip"> Do this other thing</span>');
 const $tester3 = $('<span class="tooltip"> Do one more thing</span>');
 const $ccInput = $('#cc-num');
 
 
-$paymentDiv.eq(0).append($ccWarning);
+$cardInfo.eq(0).append($ccWarning);
 $ccWarning.hide();
-$paymentDiv.eq(1).append($tester2);
+$cardInfo.eq(1).append($tester2);
 $tester2.hide();
-$paymentDiv.eq(2).append($tester3);
+$cardInfo.eq(2).append($tester3);
 $tester3.hide();
 
 //function for validating whether credit card is numbers only 13-16 digits
@@ -173,14 +173,15 @@ function ccValidate(cardNumber) {
 
 
 //begin validating input once first number is entered
-$ccInput.on('keyup focus', function(){
+$ccInput.on('change keyup', function(){
     //get value of input
     const cc = $ccInput.val();
       /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
       if(!ccValidate(cc) && cc !== "")  {
       $ccWarning.show();
+      $ccInput.css("borderColor" , "red");
       //otherwise hide the warning message
-    }  else if(ccValidate(cc)) {
+    }  else if(ccValidate(cc) || cc === "") {
         $ccWarning.hide();
         $ccInput.css("border" , "none");
     }
