@@ -198,33 +198,39 @@ function ccValidate(cardNumber) {
 //      }
 // });
 
-function inputChange(warning, value, input){
+function inputChange(warning, warning2 value, input){
     //get value of input
 
-      warning.hide();
+      warning2.hide();
       /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
       if(!ccValidate(value) && value !== "")  {
       warning.show();
       input.css("borderColor" , "red");
       //otherwise hide the warning message
-    }  else if(ccValidate(value) || valuec === "") {
+    }  else if(ccValidate(value) || value === "") {
         warning.hide();
         input.css("borderColor" , "transparent");
     }
+}
+    function onBlur(warning, value){
 
-    // function onBlur(warning, value){
-    //
-    //      if(!ccValidate(value) && value === "") {
-    //        warning.show();
-    //      }
-    // }
+         if(!ccValidate(value) && value === "") {
+           warning.show();
+         }
+    }
 
 
 //set variable for credit card number to pass into function
 const $cardValue = $ccInput.val();
 
-$ccInput.on("change keyup" , inputChange($ccWarning, $cardValue, $ccInput));
-//$ccInput.on("blur" , onBlur($ccWarning2, $cardValue));
+$ccInput.on("change keyup" , function () {
+  inputChange($ccWarning, $ccWarning2, $cardValue, $ccInput);
+
+});
+$ccInput.on("blur" , function() {
+  onBlur($ccWarning2, $cardValue);
+
+});
 
 
 
