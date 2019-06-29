@@ -224,7 +224,11 @@ function inputChange(warning, warning2 value, input){
 const $cardValue = $ccInput.val();
 
 $ccInput.on("change keyup" , function () {
+<<<<<<< HEAD
   inputChange($ccWarning, $ccWarning2, $cardValue, $ccInput);
+=======
+  inputChange($ccWarning, $cardValue, $ccInput);
+>>>>>>> f2a965cde3bea1a83f3946938e0aa4d7f7e743ea
 
 });
 $ccInput.on("blur" , function() {
