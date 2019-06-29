@@ -147,13 +147,12 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 });
 
 /********************* Payment Information Section *********************/
+//create variables to use for this section
 
-// const $divCC = $('#cc-num');
-// const $ccValidator = $('');
-// $divCC.append($ccValidator);
 const $cardDiv = $('#credit-card')
 const $cardInfo = $('#credit-card label');
 const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
+const $ccWarning2 = $('<span class="tooltip"> <b>*Required*</span>');
 const $tester2 = $('<span class="tooltip"> Do this other thing</span>');
 const $tester3 = $('<span class="tooltip"> Do one more thing</span>');
 const $ccInput = $('#cc-num');
@@ -161,6 +160,8 @@ const $ccInput = $('#cc-num');
 
 $cardInfo.eq(0).append($ccWarning);
 $ccWarning.hide();
+$cardInfo.eq(0).append($ccWarning2);
+$ccWarning2.hide();
 $cardInfo.eq(1).append($tester2);
 $tester2.hide();
 $cardInfo.eq(2).append($tester3);
@@ -173,18 +174,64 @@ function ccValidate(cardNumber) {
 
 
 //begin validating input once first number is entered
-$ccInput.on('change keyup', function(){
-    //get value of input
-    const cc = $ccInput.val();
-      /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
-      if(!ccValidate(cc) && cc !== "")  {
-      $ccWarning.show();
-      $ccInput.css("borderColor" , "red");
-      //otherwise hide the warning message
-    }  else if(ccValidate(cc) || cc === "") {
-        $ccWarning.hide();
-        $ccInput.css("border" , "none");
-    }
-});
+// $ccInput.on('change keyup', function(){
+//     //get value of input
+//     const cc = $ccInput.val();
+//       $ccWarning2.hide();
+//       /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
+//       if(!ccValidate(cc) && cc !== "")  {
+//       $ccWarning.show();
+//       $ccInput.css("borderColor" , "red");
+//       //otherwise hide the warning message
+//     }  else if(ccValidate(cc) || cc === "") {
+//         $ccWarning.hide();
+//         $ccInput.css("borderColor" , "transparent");
+//     }
+// });
+//
+// $ccInput.blur(function(){
+//
+//    const cc = $ccInput.val();
+//
+//      if(!ccValidate(cc) && cc === "") {
+//        $ccWarning2.show();
+//      }
+// });
 
-///////////////////
+function inputChange(warning, value, input){
+    //get value of input
+
+      warning.hide();
+      /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
+      if(!ccValidate(value) && value !== "")  {
+      warning.show();
+      input.css("borderColor" , "red");
+      //otherwise hide the warning message
+    }  else if(ccValidate(value) || valuec === "") {
+        warning.hide();
+        input.css("borderColor" , "transparent");
+    }
+
+    // function onBlur(warning, value){
+    //
+    //      if(!ccValidate(value) && value === "") {
+    //        warning.show();
+    //      }
+    // }
+
+
+//set variable for credit card number to pass into function
+const $cardValue = $ccInput.val();
+
+$ccInput.on("change keyup" , inputChange($ccWarning, $cardValue, $ccInput));
+//$ccInput.on("blur" , onBlur($ccWarning2, $cardValue));
+
+
+
+
+
+
+
+
+
+//////////////////////
