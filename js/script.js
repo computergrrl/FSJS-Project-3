@@ -1,5 +1,7 @@
 
-/***************************Job Role Section***************************/
+/******************************************************************
+                            JOB ROLE SECTION
+********************************************************************/
 
 const $inputName = $('#name');
 const $jobRole = $('#other-title');
@@ -33,7 +35,9 @@ $jobTitle.on('change' , function(){
 
 });
 
-/***********************T-Shirt Info Section ****************************/
+/*******************************************************************
+                        T-SHIRT INFO SECTION
+ ********************************************************************/
 
 const $shirtTheme = $('#design');
 const $shirtColors = $('#colors-js-puns option');
@@ -83,7 +87,9 @@ $shirtTheme.on('change' , function(){
 
           });
 
-/**********************Activities Section *******************************/
+/*******************************************************************
+                        ACTIVITIES SECTION
+******************************************************************/
 
 const $activities = $('.activities input');
 const $labels = $('.activities label');
@@ -94,7 +100,7 @@ const $showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
 $act.append($showTotal);
 
 
-//function for when there's a change in the activities section
+//event listener for when there's a change in the activities section
 $activities.on('change', function(e){
 
 /************************************
@@ -102,20 +108,20 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 ***********************************/
     function activitiesToggler(inputName, itemNumber) {
     //checks if checked box has name equal to inputName argument
-      if(e.target.getAttribute('name') === inputName) {
+        if(e.target.getAttribute('name') === inputName) {
 
-        /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
-       $labels.eq(itemNumber).toggleClass("disabled");
+          /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
+         $labels.eq(itemNumber).toggleClass("disabled");
 
-          /* Then check if the checkbox is disabled. If it is enable it and if it's already enabled then disable it*/
-          if($activities.eq(itemNumber).prop("disabled")) {
-             $activities.eq(itemNumber).prop("disabled" , false);
+            /* Then check if the checkbox is disabled. If it is enable it and if it's already enabled then disable it*/
+            if($activities.eq(itemNumber).prop("disabled")) {
+               $activities.eq(itemNumber).prop("disabled" , false);
 
-         } else if($activities.eq(itemNumber).prop("disabled" , false)) {
-               $activities.eq(itemNumber).prop("disabled" , true);
-           }
+           } else if($activities.eq(itemNumber).prop("disabled" , false)) {
+                 $activities.eq(itemNumber).prop("disabled" , true);
+             }
 
-       }
+         }
     }
     /* run the activitiesToggler function on all 4 boxes which might conflict and enable or disable them accordingly */
     activitiesToggler("js-frameworks" , 3);
@@ -146,96 +152,160 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 
 });
 
-/********************* Payment Information Section *********************/
-//create variables to use for this section
+/********************************************************************
+                        PAYMENT INFO SECTION
+*********************************************************************/
 
+//input variables
 const $cardDiv = $('#credit-card')
 const $cardInfo = $('#credit-card label');
-const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
-const $ccWarning2 = $('<span class="tooltip"> <b>*Required*</span>');
-const $tester2 = $('<span class="tooltip"> Do this other thing</span>');
-const $tester3 = $('<span class="tooltip"> Do one more thing</span>');
 const $ccInput = $('#cc-num');
+const $zipInput = $('#zip');
+const $cvvInput = $('#cvv')
+
+//the warning variables
+const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
+const $warning2 = $('<span class="tooltip"> <b>*Required*</span>');
+const $zipWarning = $('<span class="tooltip"> Must be 5 digits <b>Numbers only</b></span>');
+const $cvvWarning = $('<span class="tooltip"> Can only be 3 digits<b>Numbers only</b></span>');
 
 
+//append all of the warnings but hide them initially
 $cardInfo.eq(0).append($ccWarning);
 $ccWarning.hide();
-$cardInfo.eq(0).append($ccWarning2);
-$ccWarning2.hide();
-$cardInfo.eq(1).append($tester2);
-$tester2.hide();
-$cardInfo.eq(2).append($tester3);
-$tester3.hide();
+$cardInfo.eq(0).append($warning2);
+$warning2.hide();
+
+$cardInfo.eq(1).append($zipWarning);
+$zipWarning.hide();
+$cardInfo.eq(1).append($warning2);
+$warning2.hide();
+
+$cardInfo.eq(2).append($cvvWarning);
+$cvvWarning.hide();
+
+
+/*********************
+ VALIDATION FUNCTIONS
+***********************/
 
 //function for validating whether credit card is numbers only 13-16 digits
 function ccValidate(cardNumber) {
     return /^\d{13,16}$/.test(cardNumber);
 }
 
+//function for validating zip code is numbers only - 5 digits
+function zipValidate(zip) {
+    return /^\d{5}$/.test(zip);
+}
 
-//begin validating input once first number is entered
-// $ccInput.on('change keyup', function(){
-//     //get value of input
-//     const cc = $ccInput.val();
-//       $ccWarning2.hide();
-//       /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
-//       if(!ccValidate(cc) && cc !== "")  {
-//       $ccWarning.show();
-//       $ccInput.css("borderColor" , "red");
-//       //otherwise hide the warning message
-//     }  else if(ccValidate(cc) || cc === "") {
-//         $ccWarning.hide();
-//         $ccInput.css("borderColor" , "transparent");
-//     }
-// });
-//
-// $ccInput.blur(function(){
-//
-//    const cc = $ccInput.val();
-//
-//      if(!ccValidate(cc) && cc === "") {
-//        $ccWarning2.show();
-//      }
-// });
+//function for validating zip code is numbers only - 5 digits
+function cvvValidate(cvv) {
+    return /^\d{3}$/.test(cvv);
+}
 
-function inputChange(warning, warning2, value, input){
-    //get value of input
+/*  function to check validations whenever a change is detected in input field  */
+function inputChange(validationFunction, warning, warning2, value, input){
 
+      //hide the *Required* warning if it's not already
       warning2.hide();
-      /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
 
-      if(!ccValidate(value) && value !== "")  {
+      /*if value doesn't match the reg expression test from whatever validator function is passed in then show the warning message */
+      if(!validationFunction(value) && value !== "")  {
       warning.show();
       input.css("borderColor" , "red");
-      //otherwise hide the warning message
-    }  else if(ccValidate(value) || value === "") {
+
+      //hide the warning message if value entered either matches criteria or if the field is blank or delet
+    }  else if(validationFunction(value) || value === "") {
         warning.hide();
         input.css("borderColor" , "transparent");
     }
 }
-    function onInputBlur(warning, value){
 
-         if(!ccValidate(value) && value === "") {
+/* Function to remind users that field is required if they move away from that input and haven't yet met validation criteria  */
+function onInputBlur(validationFunction, warning, value){
+
+         if(!validationFunction(value) && value === "") {
            warning.show();
          }
     }
 
+/*********************
+CREDIT CARD VALIDATION
+**********************/
 
-//set variable for credit card number to pass into function
+//event listener for credit card field
+$ccInput.on("change keyup focus" , function () {
 
-$ccInput.on("change keyup" , function () {
+      //assign a variable to credit card input field value
+      const $cardValue = $ccInput.val();
 
-  const $cardValue = $ccInput.val();
-  inputChange($ccWarning, $ccWarning2, $cardValue, $ccInput);
+      //calling 1st validation function
+      inputChange(ccValidate, $ccWarning, $warning2, $cardValue, $ccInput);
 
 });
+
+
 $ccInput.on("blur" , function() {
-  const $cardValue = $ccInput.val();
-  onInputBlur($ccWarning2, $cardValue);
+      //assign variable to credit card input field value
+      const $cardValue = $ccInput.val();
+
+      //call 2nd validation function
+      onInputBlur(ccValidate, $warning2, $cardValue);
 
 });
 
 
+/*********************
+ZIP CODE VALIDATION
+**********************/
+
+//event listener for credit card field
+$zipInput.on("change keyup" , function () {
+
+      //assign a variable to credit card input field value
+      const $zipValue = $zipInput.val();
+
+      //calling 1st validation function
+      inputChange(zipValidate, $zipWarning, $warning2, $zipValue, $zipInput);
+
+});
+
+
+$zipInput.on("blur" , function() {
+      //assign variable to credit card input field value
+      const $zipValue = $zipInput.val();
+
+      //call 2nd validation function
+      onInputBlur(zipValidate, $warning2, $zipValue);
+
+});
+
+/*********************
+CCV CODE VALIDATION
+**********************/
+
+//event listener for credit card field
+$cvvInput.on("change keyup" , function () {
+
+      //assign a variable to credit card input field value
+      const $cvvValue = $cvvInput.val();
+
+      //calling 1st validation function
+      inputChange(cvvValidate, $cvvWarning, $warning2, $cvvValue, $cvvInput);
+
+});
+
+
+$cvvInput.on("blur" , function() {
+      //assign variable to credit card input field value
+      const $cvvValue = $cvvInput.val();
+
+      //call 2nd validation function
+      onInputBlur(cvvValidate, $warning2, $cvvValue);
+
+
+});
 
 
 
