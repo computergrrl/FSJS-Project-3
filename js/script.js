@@ -175,12 +175,8 @@ $cardInfo.eq(0).append($ccWarning);
 $ccWarning.hide();
 $cardInfo.eq(0).append($warning2);
 $warning2.hide();
-
 $cardInfo.eq(1).append($zipWarning);
 $zipWarning.hide();
-$cardInfo.eq(1).append($warning2);
-$warning2.hide();
-
 $cardInfo.eq(2).append($cvvWarning);
 $cvvWarning.hide();
 
@@ -271,16 +267,6 @@ $zipInput.on("change keyup" , function () {
 
 });
 
-
-$zipInput.on("blur" , function() {
-      //assign variable to credit card input field value
-      const $zipValue = $zipInput.val();
-
-      //call 2nd validation function
-      onInputBlur(zipValidate, $warning2, $zipValue);
-
-});
-
 /*********************
 CCV CODE VALIDATION
 **********************/
@@ -296,16 +282,6 @@ $cvvInput.on("change keyup" , function () {
 
 });
 
-
-$cvvInput.on("blur" , function() {
-      //assign variable to credit card input field value
-      const $cvvValue = $cvvInput.val();
-
-      //call 2nd validation function
-      onInputBlur(cvvValidate, $warning2, $cvvValue);
-
-
-});
 
 
 
