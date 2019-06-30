@@ -203,6 +203,7 @@ function inputChange(warning, warning2, value, input){
 
       warning2.hide();
       /*if value doesn't match the reg expression test from the ccValidate function then show the warning message */
+
       if(!ccValidate(value) && value !== "")  {
       warning.show();
       input.css("borderColor" , "red");
@@ -212,7 +213,7 @@ function inputChange(warning, warning2, value, input){
         input.css("borderColor" , "transparent");
     }
 }
-    function onBlur(warning, value){
+    function onInputBlur(warning, value){
 
          if(!ccValidate(value) && value === "") {
            warning.show();
@@ -221,14 +222,16 @@ function inputChange(warning, warning2, value, input){
 
 
 //set variable for credit card number to pass into function
-const $cardValue = $ccInput.val();
 
 $ccInput.on("change keyup" , function () {
+
+  const $cardValue = $ccInput.val();
   inputChange($ccWarning, $ccWarning2, $cardValue, $ccInput);
 
 });
 $ccInput.on("blur" , function() {
-  onBlur($ccWarning2, $cardValue);
+  const $cardValue = $ccInput.val();
+  onInputBlur($ccWarning2, $cardValue);
 
 });
 
