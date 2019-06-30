@@ -111,15 +111,15 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
         if(e.target.getAttribute('name') === inputName) {
 
           /* If checkbox name equals inputName then toggle the css "disabled" class that I added to styles.css page */
-         $labels.eq(itemNumber).toggleClass("disabled");
+              $labels.eq(itemNumber).toggleClass("disabled");
 
             /* Then check if the checkbox is disabled. If it is enable it and if it's already enabled then disable it*/
-            if($activities.eq(itemNumber).prop("disabled")) {
-               $activities.eq(itemNumber).prop("disabled" , false);
+          if($activities.eq(itemNumber).prop("disabled")) {
+             $activities.eq(itemNumber).prop("disabled" , false);
 
-           } else if($activities.eq(itemNumber).prop("disabled" , false)) {
-                 $activities.eq(itemNumber).prop("disabled" , true);
-             }
+         } else if($activities.eq(itemNumber).prop("disabled" , false)) {
+               $activities.eq(itemNumber).prop("disabled" , true);
+           }
 
          }
     }
@@ -162,6 +162,34 @@ const $cardInfo = $('#credit-card label');
 const $ccInput = $('#cc-num');
 const $zipInput = $('#zip');
 const $cvvInput = $('#cvv')
+const $payment = $('#payment');
+const $pTags = $('div p');
+
+
+$pTags.eq(1).hide();
+$pTags.eq(2).hide();
+
+  $payment.on('change' , function(){
+
+
+    const $paymentMethod = $('#payment option:selected').val();
+    if($paymentMethod === 'paypal') {
+       $cardDiv.hide();
+       $pTags.eq(2).hide();
+       $pTags.eq(1).show();
+
+    } else if($paymentMethod === 'bitcoin') {
+       $cardDiv.hide();
+       $pTags.eq(1).hide();
+       $pTags.eq(2).show();
+    }  else {
+        $pTags.eq(1).hide();
+        $pTags.eq(2).hide();
+    }
+
+  });
+
+
 
 //the warning variables
 const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
@@ -281,6 +309,10 @@ $cvvInput.on("change keyup" , function () {
       inputChange(cvvValidate, $cvvWarning, $warning2, $cvvValue, $cvvInput);
 
 });
+
+
+
+
 
 
 
