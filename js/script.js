@@ -3,10 +3,36 @@
                             JOB ROLE SECTION
 ********************************************************************/
 
+//variables used for this section
 const $inputName = $('#name');
 const $jobRole = $('#other-title');
+const $email = $('#mail');
+const $emailLabel = $email.prev();
+const $emailWarning = $('<span class="tooltip"><b> Email must be in the format: name@provider.com</b></span>')
 
+//append email warning but hide it initially
+$emailLabel.append($emailWarning);
+$emailWarning.hide();
 
+//function to validate correct email format
+function emailValidate(email) {
+  return /[^@]+@[a-z]+\.[a-z]+/i.test(email);
+}
+
+/*********************
+EMAIL VALIDATION
+*********************/
+
+//event listener for change in email input
+$email.on("change keyup" , function () {
+
+      //assign a variable to credit card input field value
+      const $emailValue = $email.val();
+
+      //calling 1st validation function
+      inputChange(emailValidate, $emailWarning, $warning2, $emailValue, $email);
+
+});
 
 //hide other job Role input field
 $jobRole.hide();
@@ -154,7 +180,7 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
       $('#totalCost').text(total);
 
 
-});
+}); //end of event listener
 
 /********************************************************************
                         PAYMENT INFO SECTION
@@ -170,30 +196,33 @@ const $payment = $('#payment');
 const $pTags = $('div p');
 
 
+//hide the paypal and bitcoin options by default
 $pTags.eq(1).hide();
 $pTags.eq(2).hide();
 
+  //event listener for when payment option is changed
   $payment.on('change' , function(){
 
-
+    //if paypal is selected show paypal info and hide bitcoin and credit card options
     const $paymentMethod = $('#payment option:selected').val();
     if($paymentMethod === 'paypal') {
        $cardDiv.hide();
        $pTags.eq(2).hide();
        $pTags.eq(1).show();
 
+      //if bitcoin selected, show bitcoin info and hide paypal and credit card options
     } else if($paymentMethod === 'bitcoin') {
        $cardDiv.hide();
        $pTags.eq(1).hide();
        $pTags.eq(2).show();
+
+       //if credit card selectd hide the bitcoin and paypal options
     }  else {
         $pTags.eq(1).hide();
         $pTags.eq(2).hide();
     }
 
   });
-
-
 
 //the warning variables
 const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
@@ -313,7 +342,6 @@ $cvvInput.on("change keyup" , function () {
       inputChange(cvvValidate, $cvvWarning, $warning2, $cvvValue, $cvvInput);
 
 });
-
 
 
 
