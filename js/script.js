@@ -40,9 +40,13 @@ $jobTitle.on('change' , function(){
  ********************************************************************/
 
 const $shirtTheme = $('#design');
+const $theme = $('#design option:selected').val();
 const $shirtColors = $('#colors-js-puns option');
+const $shirtColorsMenu = $('#colors-js-puns');
 
-
+if($theme === 'Select Theme') {
+    $shirtColorsMenu.hide();
+}
 //event listener to detect change in the dropdown menu
 $shirtTheme.on('change' , function(){
 
@@ -51,7 +55,7 @@ $shirtTheme.on('change' , function(){
           const $theme = $('#design option:selected').val();
 
               if($theme === 'js puns') {
-
+                  $shirtColorsMenu.show();
                   $shirtColors.eq(0).prop('selected' , 'true');
 
 
@@ -67,7 +71,7 @@ $shirtTheme.on('change' , function(){
 
               } else if($theme === 'heart js') {
 
-
+                    $shirtColorsMenu.show();
                     $shirtColors.eq(3).prop('selected' , 'true');
 
                     //show the last 3 and hide the first 3
