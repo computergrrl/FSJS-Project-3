@@ -35,9 +35,7 @@ $emailWarning2.hide();
 
 //function to validate correct email format
 function emailValidate(email) {
-  //return /[^@]+@[a-z]+\.[a-z]+/i.test(email);
-
-return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+  return /[^@]+@[a-z]+\.[a-z]+/i.test(email);
 
 }
 

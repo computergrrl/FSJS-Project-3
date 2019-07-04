@@ -22,7 +22,14 @@ $registerButton.click(function(e){
        $email.focus();
        $emailWarning2.show();
 
-    }  else if ($payment.val() === 'select_method' ||
+    }  else if(!emailValidate($email.val())) {
+       e.preventDefault();
+       $email.focus();
+       $emailWarning.show();
+
+    }
+
+      else if ($payment.val() === 'select_method' ||
        $payment.val() === 'credit card') {
 
 
