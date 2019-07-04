@@ -5,7 +5,6 @@
 const $activities = $('.activities input');
 const $labels = $('.activities label');
 const $act = $('.activities');
-let total = 0;
 
 //create and append a p and span to display total cost in
 const $showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
@@ -48,7 +47,7 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 
 
       //create variable named total to store total price
-
+      let total = 0;
 
       //if the first item is checked then add 200 to total
       const $main = $('#main');
@@ -65,6 +64,10 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
       }
       //update the total
       $('#totalCost').text(total);
+
+      if(total !== 0) {
+        $activitiesWarning.hide();
+      }
 
 
 }); //end of event listener

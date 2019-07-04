@@ -4,14 +4,15 @@
 *************************************************************************/
 const $registerButton = $('button');
 
-if (total === 0) {
-    $activities.focus();
-    $activities.css('borderColor' , 'red');
-    $ac
-
-}
+$registerButton.click(function(e){
 
 
+    if ($('#totalCost').text() === "") {
+        e.preventDefault();
+        $activitiesWarning.show();
+    }
+
+});
 
 
 
