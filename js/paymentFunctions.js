@@ -45,11 +45,11 @@ $pTags.eq(2).hide();
 THE WARNING VARIABLES
 *************************/
 const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
-const $ccWarning2 = $('<span class="tooltip"> <b>*Can not be empty*</span>');
+const $ccWarning2 = $('<span class="tooltip"> <b>*Can not be blank*</span>');
 const $zipWarning = $('<span class="tooltip"> Must be 5 digits <b>Numbers only</b></span>');
-const $zipWarning2 = $('<span class="tooltip"> <b>*Can not be empty*</span>');
+const $zipWarning2 = $('<span class="tooltip"> <b>*Can not be blank*</span>');
 const $cvvWarning = $('<span class="tooltip"> Can only be 3 digits<b>Numbers only</b></span>');
-const $cvvWarning2 = $('<span class="tooltip"> <b>*Can not be empty*</span>');
+const $cvvWarning2 = $('<span class="tooltip"> <b>*Can not be blank*</span>');
 
 
 
