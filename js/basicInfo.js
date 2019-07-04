@@ -10,7 +10,7 @@ const $jobRole = $('#other-title');
 const $email = $('#mail');
 const $emailLabel = $email.prev();
 const $emailWarning = $('<span class="tooltip"><b> Email must be in the format: name@provider.com</b></span>');
-const $emailWarning2 = $('<span>')
+const $emailWarning2 = $('<span class="tooltip"><b> Email field can not be blank</b></span>');
 
 //append name warning message but hide it initially
 $nameLabel.append($nameWarning);
@@ -27,9 +27,11 @@ $inputName.on("change keyup" , function () {
 });
 
 
-//append email warning but hide it initially
+//append email warnings but hide them initially
 $emailLabel.append($emailWarning);
 $emailWarning.hide();
+$emailLabel.append($emailWarning2);
+$emailWarning2.hide();
 
 //function to validate correct email format
 function emailValidate(email) {
@@ -50,7 +52,7 @@ $email.on("change keyup" , function () {
       validateInput(emailValidate, $emailWarning, $emailWarning2, $emailValue, $email);
 
       if($emailValue !== "") {
-        $emailWarning.hide();
+        $emailWarning2.hide();
       }
 
 });

@@ -41,7 +41,7 @@ $pTags.eq(2).hide();
 
   });
 
-/***********************8 
+/************************
 THE WARNING VARIABLES
 *************************/
 const $ccWarning = $('<span class="tooltip"> <b>Numbers only</b> Must be 13-16 digits </span>');
