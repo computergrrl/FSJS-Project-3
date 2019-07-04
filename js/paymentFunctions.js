@@ -9,8 +9,11 @@ const $ccInput = $('#cc-num');
 const $zipInput = $('#zip');
 const $cvvInput = $('#cvv')
 const $payment = $('#payment');
+const $paymentOptions = $('#payment option');
 const $pTags = $('div p');
 
+$paymentOptions.eq(1).prop('selected' , 'true');
+$paymentOptions.eq(0).prop('disabled' , 'true');
 
 //hide the paypal and bitcoin options by default
 $pTags.eq(1).hide();
