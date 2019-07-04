@@ -46,9 +46,9 @@ $shirtTheme.on('change' , function(){
                     $shirtColors.eq(5).show();
 
                 //otherwise show all shirt color options
-              }  else {
+              }  else if($theme === 'Select Theme') {
 
-                     $shirtColors.show();
+                     $shirtColorsMenu.hide();
               }
 
 
