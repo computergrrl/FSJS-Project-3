@@ -1,14 +1,31 @@
 /******************************************************************
-                            JOB ROLE SECTION
+                      BASIC INFO SECTION
 ********************************************************************/
 
 //variables used for this section
 const $inputName = $('#name');
+const $nameLabel = $inputName.prev();
+const $nameWarning = $('<span class="tooltip"><b>Name field can not be blank</b></span>');
 const $jobRole = $('#other-title');
 const $email = $('#mail');
 const $emailLabel = $email.prev();
 const $emailWarning = $('<span class="tooltip"><b> Email must be in the format: name@provider.com</b></span>');
 const $emailWarning2 = $('<span>')
+
+//append name warning message but hide it initially
+$nameLabel.append($nameWarning);
+$nameWarning.hide();
+
+
+$inputName.on("change keyup" , function () {
+
+      //if name field warning is displayed remove it if a not null value is entered
+      if($inputName.val() !== "") {
+        $nameWarning.hide();
+      }
+
+});
+
 
 //append email warning but hide it initially
 $emailLabel.append($emailWarning);
@@ -31,6 +48,10 @@ $email.on("change keyup" , function () {
 
       //calling 1st validation function
       validateInput(emailValidate, $emailWarning, $emailWarning2, $emailValue, $email);
+
+      if($emailValue !== "") {
+        $emailWarning.hide();
+      }
 
 });
 
