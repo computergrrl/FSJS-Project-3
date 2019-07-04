@@ -5,15 +5,16 @@
 const $activities = $('.activities input');
 const $labels = $('.activities label');
 const $act = $('.activities');
+let total = 0;
 
 //create and append a p and span to display total cost in
 const $showTotal = $('<p>Total Cost: $ <span id="totalCost"></span></p>');
 $act.append($showTotal);
 
 //create warning variable for if no boxes are checked upon submit
-$activitiesWarning = $('<span>You must select at least one activity</span>');
+$activitiesWarning = $('<span style="color:red">You must select at least one activity</span>');
 $act.append($activitiesWarning);
-//$activitiesWarning.hide();
+$activitiesWarning.hide();
 
 
 //event listener for when there's a change in the activities section
@@ -47,7 +48,7 @@ FUNCTION TO ENABLE/DISABLE ACTIVITIES
 
 
       //create variable named total to store total price
-      let total = 0;
+
 
       //if the first item is checked then add 200 to total
       const $main = $('#main');
